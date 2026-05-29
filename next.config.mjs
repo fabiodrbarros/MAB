@@ -1,17 +1,12 @@
+import createNextIntlPlugin from "next-intl/plugin";
+
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Output standalone para Docker — gera bundle minimal com node_modules incluído
   output: "standalone",
-
-  images: {
-    // Permite imagens locais e remotas
-    remotePatterns: [],
-  },
-
-  // Compressão activa
+  images: { remotePatterns: [] },
   compress: true,
-
-  // Headers de segurança básicos
   async headers() {
     return [
       {
@@ -26,4 +21,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

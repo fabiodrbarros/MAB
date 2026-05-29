@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
+import createIntlMiddleware from "next-intl/middleware";
+import { routing } from "./i18n/routing";
 
 const ADMIN_COOKIE = "mab_admin_session";
 
-// Importar a verificação directamente (não pode usar 'crypto' de node em edge,
-// por isso replicamos a lógica usando Web Crypto API).
+/* ─── Auth verification (Web Crypto compatible, runs in Edge) ─── */
 async function isAuthed(token: string | undefined): Promise<boolean> {
   if (!token) return false;
   const SESSION_KEY = process.env.ADMIN_SESSION_KEY || "mab-default-secret-CHANGE-IN-PROD";
@@ -17,7 +18,6 @@ async function isAuthed(token: string | undefined): Promise<boolean> {
     const expiry = parseInt(expiryStr, 10);
     if (isNaN(expiry) || Date.now() > expiry) return false;
 
-    // Recriar HMAC via Web Crypto
     const enc = new TextEncoder();
     const key = await crypto.subtle.importKey(
       "raw", enc.encode(SESSION_KEY),
@@ -34,43 +34,55 @@ async function isAuthed(token: string | undefined): Promise<boolean> {
   }
 }
 
+const intlMiddleware = createIntlMiddleware(routing);
+
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const token = req.cookies.get(ADMIN_COOKIE)?.value;
-  const authed = await isAuthed(token);
 
-  // Páginas /mab-guest-admin/* (exceto /mab-guest-admin/login) requerem sessão
-  if (pathname.startsWith("/mab-guest-admin") && pathname !== "/mab-guest-admin/login") {
-    if (!authed) {
+  /* ─── Admin pages (sem locale prefix) ─── */
+  if (pathname.startsWith("/mab-guest-admin")) {
+    const authed = await isAuthed(token);
+    if (pathname !== "/mab-guest-admin/login" && !authed) {
       const url = req.nextUrl.clone();
       url.pathname = "/mab-guest-admin/login";
       url.searchParams.set("next", pathname);
       return NextResponse.redirect(url);
     }
+    if (pathname === "/mab-guest-admin/login" && authed) {
+      const url = req.nextUrl.clone();
+      url.pathname = "/mab-guest-admin";
+      return NextResponse.redirect(url);
+    }
+    return NextResponse.next();
   }
 
-  // Se já está autenticado e vai para /mab-guest-admin/login → manda para /mab-guest-admin
-  if (pathname === "/mab-guest-admin/login" && authed) {
-    const url = req.nextUrl.clone();
-    url.pathname = "/mab-guest-admin";
-    return NextResponse.redirect(url);
-  }
-
-  // APIs de escrita protegidas (POST/PUT/DELETE em /api/properties, /api/projects, /api/upload)
+  /* ─── API writes ─── */
   if (
     (pathname.startsWith("/api/properties") ||
      pathname.startsWith("/api/projects") ||
      pathname.startsWith("/api/upload")) &&
     req.method !== "GET" && req.method !== "HEAD"
   ) {
+    const authed = await isAuthed(token);
     if (!authed) {
       return NextResponse.json({ error: "Não autorizado" }, { status: 401 });
     }
+    return NextResponse.next();
   }
 
-  return NextResponse.next();
+  /* ─── Resto: rotas públicas com locale ─── */
+  return intlMiddleware(req);
 }
 
 export const config = {
-  matcher: ["/mab-guest-admin/:path*", "/api/properties/:path*", "/api/projects/:path*", "/api/upload"],
+  // Exclui static files, _next, api, etc. da deteção de locale
+  matcher: [
+    // Tudo exceto _next, static, etc.
+    "/((?!_next|api/auth|.*\\..*).*)",
+    // Mas inclui APIs protegidas
+    "/api/properties/:path*",
+    "/api/projects/:path*",
+    "/api/upload",
+  ],
 };

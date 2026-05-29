@@ -1,0 +1,288 @@
+{
+  "nav": {
+    "home":        "Home",
+    "construction":"Construction",
+    "engineering": "Engineering",
+    "realestate":  "Real Estate",
+    "projects":    "Projects",
+    "process":     "Process",
+    "contact":     "Contact",
+    "menu":        "Menu",
+    "close":       "Close",
+    "navigation":  "Navigation",
+    "talkToUs":    "Get in touch"
+  },
+
+  "common": {
+    "explore":           "Explore",
+    "exploreAreas":      "Explore areas",
+    "talkAboutProject":  "Discuss a project",
+    "talkToUs":          "Get in touch",
+    "scroll":            "Scroll",
+    "discover":          "Scroll to discover",
+    "viewDetail":        "View details",
+    "requestInfo":       "Request information",
+    "back":              "Back",
+    "next":              "Next",
+    "previous":          "Previous",
+    "loading":           "Loading...",
+    "send":              "Send",
+    "all":               "All"
+  },
+
+  "home": {
+    "eyebrow":     "Territory in Value",
+    "titlePart1":  "We turn",
+    "titlePart2":  "territory",
+    "titlePart3":  "into value.",
+    "layers": {
+      "construction": "Construction",
+      "engineering":  "Engineering",
+      "realestate":   "Real Estate"
+    },
+
+    "areas": {
+      "eyebrow":   "Areas",
+      "titleLine1":"Three areas.",
+      "titleLine2":"One complete cycle.",
+      "constructionHeadline":   "Matter takes shape.",
+      "constructionDescription":"Single-family and multi-family houses, walls, embankments and earthworks.",
+      "engineeringHeadline":    "Decisions gain method.",
+      "engineeringDescription": "Planning, technical reading and coordination so every site decision has a solid base.",
+      "realestateHeadline":     "Space gains value.",
+      "realestateDescription":  "Buying, selling and increasing the value of properties, with an integrated view of territory, construction and market."
+    },
+
+    "starting": {
+      "eyebrow":      "Starting point",
+      "titleLine1":   "What's your",
+      "titleLine2":   "starting point?",
+      "selectPrompt": "Select a starting point to see the available options.",
+      "ficha":        "Tech sheet",
+      "options": {
+        "land":      "I have a piece of land",
+        "build":     "I want to build",
+        "technical": "I need technical support",
+        "buysell":   "I want to buy or sell a property",
+        "work":      "I have a project to execute"
+      },
+      "startingPoint":  "Starting point",
+      "mainArea":       "Main area",
+      "intervention":   "Possible intervention",
+      "nextStep":       "Next step"
+    },
+
+    "cta": {
+      "eyebrow":  "Territory in Value",
+      "titleLine1":"More than building:",
+      "titleLine2":"preparing, executing",
+      "titleLine3":"and adding value."
+    }
+  },
+
+  "construction": {
+    "label": "01 — Construction",
+    "title": "Building with foundation, method and on-site presence.",
+    "services": {
+      "moradiaUni":          { "title": "Single-family Houses",        "desc": "Complete construction of individual houses from foundations to handover." },
+      "moradiaMulti":        { "title": "Multi-family Houses",         "desc": "Buildings with multiple housing units, with structural rigour and finishing." },
+      "muros":               { "title": "Walls and Outdoor Structures","desc": "Retaining, fence and containment walls, adapted to the site conditions." },
+      "aterros":             { "title": "Embankments",                 "desc": "Moving and compacting soil to prepare platforms and slopes." },
+      "terraplanagem":       { "title": "Earthworks",                  "desc": "Levelling and shaping the ground for construction or other uses." },
+      "preparacaoTerreno":   { "title": "Site Preparation",            "desc": "Clearing, access, drainage and organisation of the space before structural work." }
+    },
+    "layers": {
+      "eyebrow":   "Before the first wall",
+      "titleLine1":"A solid project",
+      "titleLine2":"starts with preparation.",
+      "phase":     "Phase",
+      "of":        "of",
+      "items": {
+        "solo":         { "label": "Ground",      "title": "The site as foundation.",          "description": "Construction begins before the first wall. Reading the site, geological analysis and assessing access determine how the work is prepared." },
+        "preparation":  { "label": "Preparation", "title": "Before the visible structure.",    "description": "Embankments, earthworks, levelling and organisation of the space create the technical platform on which everything else sits." },
+        "structure":    { "label": "Structure",   "title": "Concrete and masonry.",            "description": "Reinforced concrete structure, load-bearing walls and supporting elements define the permanent geometry of the building." },
+        "finishes":     { "label": "Finishes",    "title": "Detail and final quality.",        "description": "Coatings, joinery, installations and general finishes complete the work and define its final character." },
+        "delivery":     { "label": "Handover",    "title": "From site to asset.",              "description": "The finished work is handed over with all documentation, licensing and conditions for habitation or use." }
+      }
+    }
+  },
+
+  "engineering": {
+    "label": "02 — Engineering",
+    "title": "Engineering to turn intent into execution.",
+    "pillars": {
+      "reading":       { "title": "Reading the site",        "desc": "Analysis of physical, topographic and geological conditions before any intervention." },
+      "planning":      { "title": "Technical planning",      "desc": "Defining phases, resources and a logical execution sequence for each project." },
+      "coordination":  { "title": "Site coordination",       "desc": "Technical follow-up of the work fronts, ensuring alignment with the project." },
+      "support":       { "title": "Execution support",       "desc": "Technical response to unexpected events and decisions based on site knowledge." },
+      "phases":        { "title": "Phase organisation",      "desc": "Sequencing of the project stages to optimise time, cost and quality." },
+      "decisions":     { "title": "Decisions with a technical basis", "desc": "Every site decision is backed by technical analysis, not just intuition." }
+    },
+    "method": {
+      "eyebrow":   "Method",
+      "titleLine1":"Four stages.",
+      "titleLine2":"One coherent approach.",
+      "stage":     "Stage",
+      "of":        "of",
+      "items": {
+        "read":      { "label": "Read",       "title": "Observe and understand.",                 "description": "Read the site, the constraints and the real context before any decision. Technical reading is the first step of any solid project." },
+        "plan":      { "label": "Plan",       "title": "Structure the technical path.",           "description": "Define phases, resources, sequence and control points along the project. Planning anticipates decisions and reduces unexpected events." },
+        "coordinate":{ "label": "Coordinate", "title": "Align the people involved.",              "description": "Ensure consistency between project and execution, follow progress and connect the different work fronts." },
+        "follow":    { "label": "Follow up",  "title": "Be present in critical phases.",          "description": "Respond technically to unexpected events and ensure quality of execution in the decisive phases of the project." }
+      }
+    }
+  },
+
+  "realestate": {
+    "label": "03 — Real Estate",
+    "title": "Properties with potential. Land with a future.",
+    "filters": {
+      "all":           "All",
+      "land":          "Land",
+      "house":         "Houses",
+      "development":   "In development",
+      "opportunity":   "Opportunities"
+    },
+    "property":  "property",
+    "properties":"properties",
+    "noResults": "No properties in this category at the moment.",
+    "form": {
+      "eyebrow":  "I have a property",
+      "titleLine1":"What's your",
+      "titleLine2":"situation?",
+      "options": {
+        "sell":      "I want to sell",
+        "buy":       "I want to buy",
+        "land":      "I have a piece of land",
+        "evaluate":  "I want to evaluate options",
+        "other":     "Other"
+      }
+    },
+    "detail": {
+      "description":        "Description",
+      "features":           "Features",
+      "ficha":              "Tech sheet",
+      "type":               "Type",
+      "location":           "Location",
+      "area":               "Area",
+      "price":              "Price",
+      "status":             "Status",
+      "askForInfo":         "Request information",
+      "backToListing":      "Back to listing",
+      "descriptionPending": "Description coming soon."
+    }
+  },
+
+  "projects": {
+    "label": "Projects",
+    "title": "Work, detail and territory.",
+    "filters": {
+      "all":           "All",
+      "construction":  "Construction",
+      "earthworks":    "Earthworks",
+      "walls":         "Walls",
+      "houses":        "Houses"
+    },
+    "project":  "project",
+    "projects": "projects",
+    "noResults":"No projects in this category at the moment.",
+    "detail": {
+      "description":        "Description",
+      "ficha":              "Tech sheet",
+      "category":           "Category",
+      "location":           "Location",
+      "year":               "Year",
+      "duration":           "Duration",
+      "area":               "Area",
+      "client":             "Client",
+      "similarProject":     "Similar project?",
+      "backToGallery":      "Back to gallery",
+      "descriptionPending": "Description coming soon."
+    }
+  },
+
+  "process": {
+    "eyebrow":     "Territory in Value",
+    "titleLine1":  "From ground",
+    "titleLine2":  "to value.",
+    "subtitle":    "A visual walk-through of the path that turns site, technical decision, construction and property into a complete value cycle.",
+    "scrollHint":  "Scroll to discover",
+    "phase":       "Phase",
+    "of":          "of",
+    "technicalDetail":"Technical detail",
+    "cta": {
+      "title":    "Ready to transform your land?",
+      "button":   "Get in touch"
+    },
+    "steps": {
+      "terreno":       { "subtitle": "The starting point",       "title": "Site",             "description": "It all starts with the place: access, topography, surroundings and potential. Every piece of land has its own reading.", "detail": "Analysis of access, solar orientation, levels and surroundings. The land says more than it seems." },
+      "leituraTecnica":{ "subtitle": "Applied engineering",      "title": "Technical Reading","description": "Engineering turns real conditions into execution decisions. Every technical detail prevents future mistakes.",          "detail": "Phase planning, identification of constraints, definition of access and structure." },
+      "preparacao":    { "subtitle": "The base before the base", "title": "Preparation",      "description": "Embankments, earthworks, access and organisation of the space create the real base of the project.",                  "detail": "Earth moving, levelling, drainage and structural site preparation." },
+      "construcao":    { "subtitle": "Execution with method",    "title": "Construction",     "description": "Matter takes shape through coordinated execution, phase by phase, with technical rigour.",                                "detail": "Structure, masonry, roof, finishes — each stage delivered with precision." },
+      "propriedade":   { "subtitle": "From site to asset",       "title": "Property",         "description": "The construction becomes an asset: a home, a house, an opportunity with real value.",                                    "detail": "Documentation, preparation for habitability, handover and post-construction follow-up." },
+      "mercado":       { "subtitle": "Value in motion",          "title": "Market",           "description": "The real estate side brings the project closer to those looking to buy, sell or develop.",                                "detail": "Market positioning, asset valuation, sales support." }
+    }
+  },
+
+  "contact": {
+    "eyebrow":      "Contacts",
+    "titleLine1":   "Let's talk",
+    "titleLine2":   "about your project.",
+    "subtitle":     "A piece of land, a project, a property — whatever the starting point, the first step is a conversation.",
+    "phone":        "Phone",
+    "email":        "Email",
+    "location":     "Location",
+    "open":         "Open",
+    "mapLabel":     "Location",
+    "openMap":      "Open map",
+    "form": {
+      "eyebrow":    "Send a message",
+      "titleLine1": "Don't know",
+      "titleLine2": "where to start?",
+      "intro":      "Choose your starting point and tell us what you want to develop. From there, we'll help you understand the best path.",
+      "name":       "Name",
+      "phone":      "Phone",
+      "email":      "Email",
+      "startingPoint":"Starting point",
+      "message":    "Message",
+      "namePlaceholder":    "Your name",
+      "emailPlaceholder":   "email@example.com",
+      "messagePlaceholder": "Describe your project, land or intent...",
+      "send":       "Send request",
+      "sending":    "Sending...",
+      "successEyebrow":"Request received",
+      "successTitle":  "We'll get in touch shortly.",
+      "successBody":   "We've received your request. The Manuel Amorim Barros team will review your situation and reply as soon as possible.",
+      "sendAnother": "Send another request",
+      "options": {
+        "land":      "I have a piece of land",
+        "build":     "I want to build",
+        "technical": "I need technical support",
+        "property":  "I want to buy or sell a property",
+        "work":      "I have a project to execute",
+        "other":     "Other"
+      }
+    }
+  },
+
+  "footer": {
+    "navigation":    "Navigation",
+    "contacts":      "Contacts",
+    "rights":        "All rights reserved.",
+    "complaints":    "Complaints Book",
+    "tagline":       "Territory in Value"
+  },
+
+  "notFound": {
+    "eyebrow":    "Error 404",
+    "coords":     "Unknown coordinates",
+    "titleLine1": "This territory",
+    "titleLine2": "hasn't been mapped yet.",
+    "subtitle":   "The page you're looking for doesn't exist or has been moved. Use the shortcuts below to get back to familiar ground.",
+    "backHome":   "Back to home",
+    "talkToUs":   "Get in touch",
+    "shortcuts":  "Shortcuts"
+  },
+
+  "backToTop": "Back to top"
+}

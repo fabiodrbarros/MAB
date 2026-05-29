@@ -2,7 +2,7 @@
 
 import { useState, useRef, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
 import type { Property } from "@/lib/storage";

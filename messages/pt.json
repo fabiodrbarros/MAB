@@ -1,0 +1,288 @@
+{
+  "nav": {
+    "home":        "Início",
+    "construction":"Construção",
+    "engineering": "Engenharia",
+    "realestate":  "Imobiliária",
+    "projects":    "Projetos",
+    "process":     "Processo",
+    "contact":     "Contacto",
+    "menu":        "Menu",
+    "close":       "Fechar",
+    "navigation":  "Navegação",
+    "talkToUs":    "Fale connosco"
+  },
+
+  "common": {
+    "explore":           "Explorar",
+    "exploreAreas":      "Explorar áreas",
+    "talkAboutProject":  "Falar sobre um projeto",
+    "talkToUs":          "Fale connosco",
+    "scroll":            "Scroll",
+    "discover":          "Scroll para descobrir",
+    "viewDetail":        "Ver detalhe",
+    "requestInfo":       "Pedir informações",
+    "back":              "Voltar",
+    "next":              "Seguinte",
+    "previous":          "Anterior",
+    "loading":           "A carregar...",
+    "send":              "Enviar",
+    "all":               "Todos"
+  },
+
+  "home": {
+    "eyebrow":     "Território em Valor",
+    "titlePart1":  "Transformamos",
+    "titlePart2":  "território",
+    "titlePart3":  "em valor.",
+    "layers": {
+      "construction": "Construção",
+      "engineering":  "Engenharia",
+      "realestate":   "Imobiliária"
+    },
+
+    "areas": {
+      "eyebrow":   "Áreas",
+      "titleLine1":"Três áreas.",
+      "titleLine2":"Um ciclo completo.",
+      "constructionHeadline":   "A matéria ganha forma.",
+      "constructionDescription":"Moradias unifamiliares e multifamiliares, muros, aterros e terraplanagem.",
+      "engineeringHeadline":    "A decisão ganha método.",
+      "engineeringDescription": "Planeamento, leitura técnica e coordenação para que cada decisão de obra tenha base sólida.",
+      "realestateHeadline":     "O espaço ganha valor.",
+      "realestateDescription":  "Compra, venda e valorização de propriedades com visão integrada entre território, construção e mercado."
+    },
+
+    "starting": {
+      "eyebrow":      "Ponto de partida",
+      "titleLine1":   "Qual é o seu",
+      "titleLine2":   "ponto de partida?",
+      "selectPrompt": "Selecione um ponto de partida para ver as opções disponíveis.",
+      "ficha":        "Ficha técnica",
+      "options": {
+        "land":      "Tenho um terreno",
+        "build":     "Quero construir",
+        "technical": "Preciso de apoio técnico",
+        "buysell":   "Quero comprar ou vender uma propriedade",
+        "work":      "Tenho uma obra para executar"
+      },
+      "startingPoint":  "Ponto de partida",
+      "mainArea":       "Área principal",
+      "intervention":   "Possível intervenção",
+      "nextStep":       "Próximo passo"
+    },
+
+    "cta": {
+      "eyebrow":  "Território em Valor",
+      "titleLine1":"Mais do que construir:",
+      "titleLine2":"preparar, executar",
+      "titleLine3":"e valorizar."
+    }
+  },
+
+  "construction": {
+    "label": "01 — Construção",
+    "title": "Construção com base, método e presença no terreno.",
+    "services": {
+      "moradiaUni":          { "title": "Moradias Unifamiliares",       "desc": "Construção completa de moradia individual desde os alicerces até à entrega." },
+      "moradiaMulti":        { "title": "Moradias Multifamiliares",     "desc": "Edificações com múltiplas frações habitacionais, com rigor estrutural e acabamento." },
+      "muros":               { "title": "Muros e Estruturas Exteriores","desc": "Muros de suporte, vedação e contenção, adaptados às condições do terreno." },
+      "aterros":             { "title": "Aterros",                      "desc": "Movimentação e compactação de terras para preparação de plataformas e taludes." },
+      "terraplanagem":       { "title": "Terraplanagem",                "desc": "Nivelamento e conformação do terreno para construção ou outras utilizações." },
+      "preparacaoTerreno":   { "title": "Preparação de Terreno",        "desc": "Limpeza, acessos, drenagem e organização do espaço antes da obra estrutural." }
+    },
+    "layers": {
+      "eyebrow":   "Antes da primeira parede",
+      "titleLine1":"Uma obra sólida",
+      "titleLine2":"começa com preparação.",
+      "phase":     "Fase",
+      "of":        "de",
+      "items": {
+        "solo":         { "label": "Solo",        "title": "O terreno como fundação.",        "description": "A construção começa antes da primeira parede. A leitura do terreno, a análise geológica e a avaliação de acessos determinam como a obra é preparada." },
+        "preparation":  { "label": "Preparação",  "title": "Antes da estrutura visível.",     "description": "Aterros, terraplanagem, nivelamento e organização do espaço criam a plataforma técnica sobre a qual tudo o resto assenta." },
+        "structure":    { "label": "Estrutura",   "title": "Betão e alvenaria.",              "description": "A estrutura em betão armado, as paredes portantes e os elementos de suporte definem a geometria permanente da construção." },
+        "finishes":     { "label": "Acabamentos", "title": "Detalhe e qualidade final.",      "description": "Revestimentos, carpintarias, instalações e acabamentos gerais completam a obra e definem o seu carácter final." },
+        "delivery":     { "label": "Entrega",     "title": "Da obra ao ativo.",               "description": "A obra concluída é entregue com toda a documentação, licenciamento e condições para habitabilidade ou utilização." }
+      }
+    }
+  },
+
+  "engineering": {
+    "label": "02 — Engenharia",
+    "title": "Engenharia para transformar intenção em execução.",
+    "pillars": {
+      "reading":       { "title": "Leitura do terreno",        "desc": "Análise das condições físicas, topográficas e geológicas antes de qualquer intervenção." },
+      "planning":      { "title": "Planeamento técnico",       "desc": "Definição de fases, recursos e sequência lógica de execução para cada projeto." },
+      "coordination":  { "title": "Coordenação de obra",       "desc": "Acompanhamento técnico das frentes de trabalho, garantindo alinhamento com o projeto." },
+      "support":       { "title": "Apoio à execução",          "desc": "Resposta técnica a imprevistos e decisões de obra com base em conhecimento de terreno." },
+      "phases":        { "title": "Organização de fases",      "desc": "Sequenciamento das etapas da obra para otimizar tempo, custo e qualidade." },
+      "decisions":     { "title": "Decisões com base técnica", "desc": "Cada decisão de obra é sustentada por análise técnica, não apenas por intuição." }
+    },
+    "method": {
+      "eyebrow":   "Método",
+      "titleLine1":"Quatro etapas.",
+      "titleLine2":"Uma abordagem coerente.",
+      "stage":     "Etapa",
+      "of":        "de",
+      "items": {
+        "read":      { "label": "Ler",        "title": "Observar e compreender.",          "description": "Ler o terreno, as condicionantes e o contexto real antes de qualquer decisão. A leitura técnica é o primeiro passo de qualquer obra sólida." },
+        "plan":      { "label": "Planear",    "title": "Estruturar o caminho técnico.",    "description": "Definir fases, recursos, sequência e pontos de controlo ao longo da obra. O planeamento antecipa decisões e reduz imprevistos." },
+        "coordinate":{ "label": "Coordenar",  "title": "Alinhar intervenientes.",          "description": "Garantir coerência entre projeto e execução, acompanhar o progresso e articular as várias frentes de trabalho." },
+        "follow":    { "label": "Acompanhar", "title": "Estar presente nas fases críticas.","description": "Responder tecnicamente a imprevistos e garantir a qualidade da execução nas fases decisivas da obra." }
+      }
+    }
+  },
+
+  "realestate": {
+    "label": "03 — Imobiliária",
+    "title": "Propriedades com potencial. Terrenos com futuro.",
+    "filters": {
+      "all":           "Todos",
+      "land":          "Terrenos",
+      "house":         "Moradias",
+      "development":   "Em desenvolvimento",
+      "opportunity":   "Oportunidades"
+    },
+    "property":  "propriedade",
+    "properties":"propriedades",
+    "noResults": "Sem propriedades nesta categoria de momento.",
+    "form": {
+      "eyebrow":  "Tenho uma propriedade",
+      "titleLine1":"Qual é a sua",
+      "titleLine2":"situação?",
+      "options": {
+        "sell":      "Quero vender",
+        "buy":       "Quero comprar",
+        "land":      "Tenho um terreno",
+        "evaluate":  "Quero avaliar possibilidades",
+        "other":     "Outro"
+      }
+    },
+    "detail": {
+      "description":        "Descrição",
+      "features":           "Características",
+      "ficha":              "Ficha técnica",
+      "type":               "Tipo",
+      "location":           "Localização",
+      "area":               "Área",
+      "price":              "Preço",
+      "status":             "Estado",
+      "askForInfo":         "Pedir informações",
+      "backToListing":      "Voltar à listagem",
+      "descriptionPending": "Descrição a disponibilizar brevemente."
+    }
+  },
+
+  "projects": {
+    "label": "Projetos",
+    "title": "Obra, detalhe e território.",
+    "filters": {
+      "all":           "Todos",
+      "construction":  "Construção",
+      "earthworks":    "Terraplanagem",
+      "walls":         "Muros",
+      "houses":        "Moradias"
+    },
+    "project":  "projeto",
+    "projects": "projetos",
+    "noResults":"Sem projetos nesta categoria de momento.",
+    "detail": {
+      "description":        "Descrição",
+      "ficha":              "Ficha técnica",
+      "category":           "Categoria",
+      "location":           "Localização",
+      "year":               "Ano",
+      "duration":           "Duração",
+      "area":               "Área",
+      "client":             "Cliente",
+      "similarProject":     "Projeto semelhante?",
+      "backToGallery":      "Voltar à galeria",
+      "descriptionPending": "Descrição a disponibilizar brevemente."
+    }
+  },
+
+  "process": {
+    "eyebrow":     "Território em Valor",
+    "titleLine1":  "Do solo",
+    "titleLine2":  "ao valor.",
+    "subtitle":    "Uma leitura visual do caminho que transforma terreno, decisão técnica, construção e propriedade num ciclo completo de valor.",
+    "scrollHint":  "Scroll para descobrir",
+    "phase":       "Fase",
+    "of":          "de",
+    "technicalDetail":"Detalhe técnico",
+    "cta": {
+      "title":    "Pronto para transformar o seu terreno?",
+      "button":   "Fale connosco"
+    },
+    "steps": {
+      "terreno":       { "subtitle": "O ponto de partida",     "title": "Terreno",        "description": "Tudo começa com o lugar: o acesso, a topografia, a envolvente e o potencial. Cada terreno tem uma leitura própria.",      "detail": "Análise de acessos, orientação solar, cotas e envolvente. O terreno diz mais do que parece." },
+      "leituraTecnica":{ "subtitle": "Engenharia aplicada",    "title": "Leitura Técnica","description": "A engenharia transforma condições reais em decisões de execução. Cada detalhe técnico evita erros futuros.",            "detail": "Planeamento de fases, identificação de constrangimentos, definição de acessos e estrutura." },
+      "preparacao":    { "subtitle": "A base antes da base",   "title": "Preparação",     "description": "Aterros, terraplanagem, acessos e organização do espaço criam a base real da obra.",                                          "detail": "Movimentação de terras, nivelamento, drenagem e preparação estrutural do terreno." },
+      "construcao":    { "subtitle": "Execução com método",    "title": "Construção",     "description": "A matéria ganha forma através de uma execução coordenada, fase a fase, com rigor técnico.",                                   "detail": "Estrutura, alvenaria, cobertura, acabamentos — cada etapa entregue com precisão." },
+      "propriedade":   { "subtitle": "Da obra ao ativo",       "title": "Propriedade",    "description": "A construção torna-se ativo: uma casa, uma moradia, uma oportunidade com valor real.",                                          "detail": "Documentação, preparação para habitabilidade, entrega e acompanhamento pós-obra." },
+      "mercado":       { "subtitle": "Valor em movimento",     "title": "Mercado",        "description": "A componente imobiliária aproxima o projeto de quem procura comprar, vender ou desenvolver.",                                   "detail": "Posicionamento de mercado, valorização do ativo, apoio à comercialização." }
+    }
+  },
+
+  "contact": {
+    "eyebrow":      "Contactos",
+    "titleLine1":   "Vamos falar",
+    "titleLine2":   "do seu projeto.",
+    "subtitle":     "Um terreno, uma obra, uma propriedade, qualquer que seja o ponto de partida, o primeiro passo é uma conversa.",
+    "phone":        "Telefone",
+    "email":        "Email",
+    "location":     "Localização",
+    "open":         "Abrir",
+    "mapLabel":     "Localização",
+    "openMap":      "Abrir mapa",
+    "form": {
+      "eyebrow":    "Enviar mensagem",
+      "titleLine1": "Não sabe por",
+      "titleLine2": "onde começar?",
+      "intro":      "Escolha o seu ponto de partida e indique-nos o que pretende desenvolver. A partir daí, ajudamos a perceber o melhor caminho.",
+      "name":       "Nome",
+      "phone":      "Telefone",
+      "email":      "Email",
+      "startingPoint":"Ponto de partida",
+      "message":    "Mensagem",
+      "namePlaceholder":    "O seu nome",
+      "emailPlaceholder":   "email@exemplo.pt",
+      "messagePlaceholder": "Descreva o seu projeto, terreno ou intenção...",
+      "send":       "Enviar pedido",
+      "sending":    "A enviar...",
+      "successEyebrow":"Pedido registado",
+      "successTitle":  "Entraremos em contacto brevemente.",
+      "successBody":   "Recebemos o seu pedido. A equipa da Manuel Amorim Barros analisará a sua situação e responderá o mais brevemente possível.",
+      "sendAnother": "Enviar outro pedido",
+      "options": {
+        "land":      "Tenho um terreno",
+        "build":     "Quero construir",
+        "technical": "Preciso de apoio técnico",
+        "property":  "Quero comprar ou vender uma propriedade",
+        "work":      "Tenho uma obra para executar",
+        "other":     "Outro"
+      }
+    }
+  },
+
+  "footer": {
+    "navigation":    "Navegação",
+    "contacts":      "Contactos",
+    "rights":        "Todos os direitos reservados.",
+    "complaints":    "Livro de Reclamações",
+    "tagline":       "Território em Valor"
+  },
+
+  "notFound": {
+    "eyebrow":    "Erro 404",
+    "coords":     "Coordenadas desconhecidas",
+    "titleLine1": "Este território",
+    "titleLine2": "ainda não foi mapeado.",
+    "subtitle":   "A página que procura não existe ou foi movida. Use os atalhos abaixo para regressar a terreno conhecido.",
+    "backHome":   "Regressar ao início",
+    "talkToUs":   "Fale connosco",
+    "shortcuts":  "Atalhos"
+  },
+
+  "backToTop": "Voltar ao topo"
+}
