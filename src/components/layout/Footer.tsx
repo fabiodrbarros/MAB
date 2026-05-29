@@ -22,8 +22,8 @@ export default function Footer() {
                 ["Construção",  "/construcao"],
                 ["Engenharia",  "/engenharia"],
                 ["Imobiliária", "/imobiliaria"],
-                ["Processo",    "/processo"],
                 ["Projetos",    "/projetos"],
+                ["Processo",    "/processo"],
                 ["Contacto",    "/contacto"],
               ].map(([label, href]) => (
                 <Link

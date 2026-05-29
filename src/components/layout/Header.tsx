@@ -11,8 +11,8 @@ const navLinks = [
   { label: "Construção",   href: "/construcao" },
   { label: "Engenharia",   href: "/engenharia" },
   { label: "Imobiliária",  href: "/imobiliaria" },
-  { label: "Processo",     href: "/processo" },
   { label: "Projetos",     href: "/projetos" },
+  { label: "Processo",     href: "/processo" },
   { label: "Contacto",     href: "/contacto" },
 ];
 

@@ -1,0 +1,47 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Node
+node_modules
+npm-debug.log*
+yarn-debug.log*
+
+# Next
+.next
+out
+dist
+build
+next-env.d.ts
+*.tsbuildinfo
+
+# Env (entram via secrets/docker-compose)
+.env
+.env*.local
+.env.production
+.env.development
+
+# Editor / IDE
+.vscode
+.idea
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Docker / CI
+Dockerfile
+.dockerignore
+docker-compose*.yml
+
+# Documentação / dev
+README.md
+DEPLOY.md
+LICENSE
+.claude
+scripts
+
+# Uploads dinâmicos (vêm de volume)
+public/uploads/*
+!public/uploads/.gitkeep
