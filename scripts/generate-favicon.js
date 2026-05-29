@@ -14,24 +14,31 @@ const SRC      = path.join(__dirname, "..", "public", "logo-icon.png");
 const APP_DIR  = path.join(__dirname, "..", "src", "app");
 const PUBLIC   = path.join(__dirname, "..", "public");
 
-const BG = { r: 26, g: 26, b: 26, alpha: 1 }; // brand-black (#1a1a1a)
+const TRANSPARENT = { r: 0, g: 0, b: 0, alpha: 0 };
 
 async function makeFavicon(size, padding) {
   const inner = size - padding * 2;
-  // 1. Redimensionar o símbolo mantendo proporção
-  // 2. Compor sobre um canvas quadrado com BG escuro
-  const resized = await sharp(SRC)
+
+  // 1. Trim — remove bordas transparentes/uniformes para deixar só o símbolo
+  // 2. Resize para caber no inner mantendo aspect ratio
+  // 3. Obter buffer + metadata para conseguir CENTRAR no canvas final
+  const trimmed = await sharp(SRC).trim().toBuffer();
+  const resized = await sharp(trimmed)
     .resize({
       width: inner, height: inner,
       fit: "contain",
-      background: { r: 0, g: 0, b: 0, alpha: 0 },
+      background: TRANSPARENT,
     })
     .toBuffer();
 
+  const { width: rw = inner, height: rh = inner } = await sharp(resized).metadata();
+  const left = Math.round((size - rw) / 2);
+  const top  = Math.round((size - rh) / 2);
+
   return sharp({
-    create: { width: size, height: size, channels: 4, background: BG },
+    create: { width: size, height: size, channels: 4, background: TRANSPARENT },
   })
-    .composite([{ input: resized, top: padding, left: padding }])
+    .composite([{ input: resized, top, left }])
     .png()
     .toBuffer();
 }
