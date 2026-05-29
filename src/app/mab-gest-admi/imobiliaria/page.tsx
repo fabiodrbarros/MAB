@@ -72,7 +72,7 @@ export default function AdminImobiliaria() {
     <div className="bg-white min-h-screen pt-32 pb-24">
       <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between gap-4">
-          <Link href="/admin" className="text-brand-copper text-[10px] tracking-[0.2em] uppercase font-semibold hover:underline">
+          <Link href="/mab-gest-admi" className="text-brand-copper text-[10px] tracking-[0.2em] uppercase font-semibold hover:underline">
             ← Voltar ao admin
           </Link>
           <LogoutButton />

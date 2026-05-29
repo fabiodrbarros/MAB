@@ -39,20 +39,20 @@ export async function middleware(req: NextRequest) {
   const token = req.cookies.get(ADMIN_COOKIE)?.value;
   const authed = await isAuthed(token);
 
-  // Páginas /admin/* (exceto /admin/login) requerem sessão
-  if (pathname.startsWith("/admin") && pathname !== "/admin/login") {
+  // Páginas /mab-gest-admi/* (exceto /mab-gest-admi/login) requerem sessão
+  if (pathname.startsWith("/mab-gest-admi") && pathname !== "/mab-gest-admi/login") {
     if (!authed) {
       const url = req.nextUrl.clone();
-      url.pathname = "/admin/login";
+      url.pathname = "/mab-gest-admi/login";
       url.searchParams.set("next", pathname);
       return NextResponse.redirect(url);
     }
   }
 
-  // Se já está autenticado e vai para /admin/login → manda para /admin
-  if (pathname === "/admin/login" && authed) {
+  // Se já está autenticado e vai para /mab-gest-admi/login → manda para /mab-gest-admi
+  if (pathname === "/mab-gest-admi/login" && authed) {
     const url = req.nextUrl.clone();
-    url.pathname = "/admin";
+    url.pathname = "/mab-gest-admi";
     return NextResponse.redirect(url);
   }
 
@@ -72,5 +72,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/api/properties/:path*", "/api/projects/:path*", "/api/upload"],
+  matcher: ["/mab-gest-admi/:path*", "/api/properties/:path*", "/api/projects/:path*", "/api/upload"],
 };
