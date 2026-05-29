@@ -8,7 +8,7 @@ import LogoMark from "@/components/ui/LogoMark";
 function LoginForm() {
   const router        = useRouter();
   const searchParams  = useSearchParams();
-  const next          = searchParams.get("next") || "/mab-gest-admi";
+  const next          = searchParams.get("next") || "/mab-guest-admin";
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

@@ -39,7 +39,7 @@ nano .env
 
 | Variável | Descrição |
 |---|---|
-| `ADMIN_USERNAME`    | Utilizador do painel /mab-gest-admi |
+| `ADMIN_USERNAME`    | Utilizador do painel /mab-guest-admin |
 | `ADMIN_PASSWORD`    | Palavra-passe forte |
 | `ADMIN_SESSION_KEY` | String aleatória de pelo menos 32 caracteres |
 
@@ -68,7 +68,7 @@ docker compose logs -f mab-website
 
 Aceder:
 - **Site público**: `http://IP_DA_VM:3000`
-- **Admin**:       `http://IP_DA_VM:3000/mab-gest-admi`
+- **Admin**:       `http://IP_DA_VM:3000/mab-guest-admin`
 
 ---
 

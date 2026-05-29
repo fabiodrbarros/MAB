@@ -39,20 +39,20 @@ export async function middleware(req: NextRequest) {
   const token = req.cookies.get(ADMIN_COOKIE)?.value;
   const authed = await isAuthed(token);
 
-  // Páginas /mab-gest-admi/* (exceto /mab-gest-admi/login) requerem sessão
-  if (pathname.startsWith("/mab-gest-admi") && pathname !== "/mab-gest-admi/login") {
+  // Páginas /mab-guest-admin/* (exceto /mab-guest-admin/login) requerem sessão
+  if (pathname.startsWith("/mab-guest-admin") && pathname !== "/mab-guest-admin/login") {
     if (!authed) {
       const url = req.nextUrl.clone();
-      url.pathname = "/mab-gest-admi/login";
+      url.pathname = "/mab-guest-admin/login";
       url.searchParams.set("next", pathname);
       return NextResponse.redirect(url);
     }
   }
 
-  // Se já está autenticado e vai para /mab-gest-admi/login → manda para /mab-gest-admi
-  if (pathname === "/mab-gest-admi/login" && authed) {
+  // Se já está autenticado e vai para /mab-guest-admin/login → manda para /mab-guest-admin
+  if (pathname === "/mab-guest-admin/login" && authed) {
     const url = req.nextUrl.clone();
-    url.pathname = "/mab-gest-admi";
+    url.pathname = "/mab-guest-admin";
     return NextResponse.redirect(url);
   }
 
@@ -72,5 +72,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/mab-gest-admi/:path*", "/api/properties/:path*", "/api/projects/:path*", "/api/upload"],
+  matcher: ["/mab-guest-admin/:path*", "/api/properties/:path*", "/api/projects/:path*", "/api/upload"],
 };

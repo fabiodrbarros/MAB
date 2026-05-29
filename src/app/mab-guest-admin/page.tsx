@@ -26,7 +26,7 @@ export default function AdminPage() {
 
         <div className="grid sm:grid-cols-2 gap-4 lg:gap-6 max-w-3xl">
           <Link
-            href="/mab-gest-admi/imobiliaria"
+            href="/mab-guest-admin/imobiliaria"
             className="group block border border-brand-light/60 hover:border-brand-copper hover:shadow-lg p-8 lg:p-10 transition-all duration-300"
           >
             <p className="text-brand-copper/70 text-3xl mb-4 font-mono">◈</p>
@@ -41,7 +41,7 @@ export default function AdminPage() {
           </Link>
 
           <Link
-            href="/mab-gest-admi/projetos"
+            href="/mab-guest-admin/projetos"
             className="group block border border-brand-light/60 hover:border-brand-copper hover:shadow-lg p-8 lg:p-10 transition-all duration-300"
           >
             <p className="text-brand-copper/70 text-3xl mb-4 font-mono">▣</p>

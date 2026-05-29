@@ -10,7 +10,7 @@ export default function LogoutButton() {
   const handleLogout = async () => {
     setLoading(true);
     await fetch("/api/auth/logout", { method: "POST" });
-    router.push("/mab-gest-admi/login");
+    router.push("/mab-guest-admin/login");
     router.refresh();
   };
 

@@ -17,7 +17,7 @@ Abrir [http://localhost:3000](http://localhost:3000).
 
 ### Admin
 
-URL: [http://localhost:3000/mab-gest-admi](http://localhost:3000/mab-gest-admi)
+URL: [http://localhost:3000/mab-guest-admin](http://localhost:3000/mab-guest-admin)
 
 Credenciais padrão (alterar via `.env.local`):
 - Utilizador: `admin`
@@ -52,7 +52,7 @@ src/
 │   └── admin/            # componentes específicos do admin
 ├── data/                 # constantes de UI estáticas
 ├── lib/                  # helpers (storage, auth, utils)
-└── middleware.ts         # proteção das rotas /mab-gest-admi e API writes
+└── middleware.ts         # proteção das rotas /mab-guest-admin e API writes
 
 data/                     # JSON persistente (propriedades, projetos)
 public/uploads/           # imagens carregadas via admin
@@ -65,7 +65,7 @@ scripts/                  # utilitários (processar logo, etc.)
 
 | Tipo | Onde |
 |---|---|
-| Propriedades        | `/mab-gest-admi/imobiliaria` → guardadas em `data/properties.json` |
-| Projetos            | `/mab-gest-admi/projetos`    → guardados em `data/projects.json`   |
+| Propriedades        | `/mab-guest-admin/imobiliaria` → guardadas em `data/properties.json` |
+| Projetos            | `/mab-guest-admin/projetos`    → guardados em `data/projects.json`   |
 | Imagens             | Upload via admin     → ficam em `public/uploads/`           |
 | Texto das secções   | Diretamente nos componentes em `src/components/sections/`  |
