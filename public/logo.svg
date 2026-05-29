@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 110" fill="none">
+  <!-- Símbolo: cunha preta + forma "3" laranja com 3 braços -->
+  <polygon points="5,92 45,5 50,5 18,92" fill="#1a1a1a"/>
+  <polygon points="50,5 95,92 32,92 32,65 44,65 44,35 50,35" fill="#E05A12"/>
+
+  <!-- Texto -->
+  <text x="120" y="36" font-family="'Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="300" letter-spacing="5" fill="#4a4a4a">MANUEL</text>
+  <text x="120" y="64" font-family="'Helvetica Neue',Arial,sans-serif" font-size="22" font-weight="800" letter-spacing="5" fill="#1a1a1a">AMORIM</text>
+  <text x="120" y="86" font-family="'Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="300" letter-spacing="5" fill="#4a4a4a">BARROS</text>
+  <text x="120" y="105" font-family="'Helvetica Neue',Arial,sans-serif" font-size="8" font-weight="500" letter-spacing="2.8" fill="#E05A12">CONSTRUÇÃO  |  ENGENHARIA  |  IMOBILIÁRIA</text>
+</svg>
