@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, ChangeEvent } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 
 export type Field =
   | { name: string; label: string; type: "text" | "textarea"; required?: boolean; placeholder?: string }
@@ -8,23 +8,38 @@ export type Field =
 
 interface AdminFormProps {
   fields: Field[];
+  /** dados iniciais para modo "edit" */
   initial?: Record<string, string>;
-  /** envia formulário; tem que devolver true em sucesso */
+  initialImages?: string[];
+  /** se true, mostra estado de edição (badge + botão cancelar) */
+  isEditing?: boolean;
+  /** retorna true em sucesso para limpar o form (em criação) */
   onSubmit: (data: Record<string, string>, images: string[]) => Promise<boolean>;
+  onCancel?: () => void;
   submitLabel?: string;
 }
 
 export default function AdminForm({
   fields,
   initial,
+  initialImages,
+  isEditing,
   onSubmit,
+  onCancel,
   submitLabel = "Guardar",
 }: AdminFormProps) {
   const [data, setData]       = useState<Record<string, string>>(initial ?? {});
-  const [images, setImages]   = useState<string[]>([]);
+  const [images, setImages]   = useState<string[]>(initialImages ?? []);
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving]   = useState(false);
   const [message, setMessage] = useState<{ type: "ok" | "error"; text: string } | null>(null);
+
+  /* Quando muda o modo (de criar p/ editar ou inverso), repopular */
+  useEffect(() => {
+    setData(initial ?? {});
+    setImages(initialImages ?? []);
+    setMessage(null);
+  }, [initial, initialImages]);
 
   const set = (k: string, v: string) => setData((d) => ({ ...d, [k]: v }));
 
@@ -57,9 +72,11 @@ export default function AdminForm({
     try {
       const ok = await onSubmit(data, images);
       if (ok) {
-        setMessage({ type: "ok", text: "Guardado com sucesso." });
-        setData({});
-        setImages([]);
+        setMessage({ type: "ok", text: isEditing ? "Atualizado com sucesso." : "Guardado com sucesso." });
+        if (!isEditing) {
+          setData({});
+          setImages([]);
+        }
       }
     } catch (err) {
       setMessage({ type: "error", text: err instanceof Error ? err.message : "Erro ao guardar" });
@@ -68,10 +85,28 @@ export default function AdminForm({
     }
   };
 
-  const input = "w-full bg-white border border-brand-light/80 px-4 py-3 text-brand-dark placeholder:text-brand-grey/40 text-sm focus:outline-none focus:border-brand-copper transition-colors";
+  const input =
+    "w-full bg-white border border-brand-light/80 px-4 py-3 text-brand-dark placeholder:text-brand-grey/40 text-sm focus:outline-none focus:border-brand-copper transition-colors";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
+      {isEditing && (
+        <div className="flex items-center justify-between gap-3 bg-brand-copper/10 border border-brand-copper/40 px-4 py-3">
+          <p className="text-brand-copper text-[10px] tracking-[0.2em] uppercase font-bold">
+            ✎ A editar item existente
+          </p>
+          {onCancel && (
+            <button
+              type="button"
+              onClick={onCancel}
+              className="text-brand-copper text-[10px] tracking-[0.2em] uppercase font-semibold hover:underline"
+            >
+              Cancelar
+            </button>
+          )}
+        </div>
+      )}
+
       {fields.map((f) => (
         <div key={f.name}>
           <label className="text-brand-grey/60 text-[10px] tracking-[0.2em] uppercase block mb-2 font-semibold">
@@ -115,7 +150,7 @@ export default function AdminForm({
       {/* Upload de imagens */}
       <div>
         <label className="text-brand-grey/60 text-[10px] tracking-[0.2em] uppercase block mb-2 font-semibold">
-          Imagens
+          Imagens {images.length > 0 && <span className="text-brand-grey/50 normal-case tracking-normal ml-2">({images.length})</span>}
         </label>
         <label className="inline-flex items-center gap-2 px-5 py-3 border border-dashed border-brand-light hover:border-brand-copper text-brand-grey hover:text-brand-copper cursor-pointer text-[10px] tracking-[0.2em] uppercase font-semibold transition-colors">
           {uploading ? "A carregar..." : "Adicionar imagens"}
@@ -155,13 +190,26 @@ export default function AdminForm({
         </p>
       )}
 
-      <button
-        type="submit"
-        disabled={saving || uploading}
-        className="inline-flex items-center gap-3 px-8 py-4 bg-brand-copper text-white text-[11px] tracking-[0.2em] uppercase font-bold hover:bg-brand-copper2 disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
-      >
-        {saving ? "A guardar..." : submitLabel} <span>→</span>
-      </button>
+      <div className="flex items-center gap-3">
+        <button
+          type="submit"
+          disabled={saving || uploading}
+          className="inline-flex items-center gap-3 px-8 py-4 bg-brand-copper text-white text-[11px] tracking-[0.2em] uppercase font-bold hover:bg-brand-copper2 disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
+        >
+          {saving ? "A guardar..." : submitLabel} <span>→</span>
+        </button>
+
+        {isEditing && onCancel && (
+          <button
+            type="button"
+            onClick={onCancel}
+            disabled={saving}
+            className="px-6 py-4 text-[11px] tracking-[0.2em] uppercase font-semibold text-brand-grey hover:text-brand-dark border border-brand-light hover:border-brand-grey transition-colors disabled:opacity-50"
+          >
+            Cancelar
+          </button>
+        )}
+      </div>
     </form>
   );
 }

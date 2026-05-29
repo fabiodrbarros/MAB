@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import Link from "next/link";
 import AdminForm, { type Field } from "@/components/admin/AdminForm";
 import AdminList from "@/components/admin/AdminList";
@@ -37,6 +37,7 @@ const fields: Field[] = [
 export default function AdminProjetos() {
   const [items, setItems] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
+  const [editingId, setEditingId] = useState<string | null>(null);
 
   const reload = useCallback(async () => {
     setLoading(true);
@@ -47,25 +48,56 @@ export default function AdminProjetos() {
 
   useEffect(() => { reload(); }, [reload]);
 
+  const editing = useMemo(
+    () => (editingId ? items.find((p) => p.id === editingId) ?? null : null),
+    [editingId, items]
+  );
+
+  const initial = useMemo(() => {
+    if (!editing) return undefined;
+    return {
+      title: editing.title,
+      category: editing.category,
+      location: editing.location,
+      year: editing.year,
+      duration: editing.duration,
+      area: editing.area,
+      client: editing.client,
+      shortDescription: editing.shortDescription,
+      description: editing.description,
+    };
+  }, [editing]);
+
+  const startEdit = (id: string) => {
+    setEditingId(id);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  const cancelEdit = () => setEditingId(null);
+
   const handleSubmit = async (data: Record<string, string>, images: string[]) => {
     const categoryLabel = categoryLabels[data.category] || data.category;
+    const payload = { ...data, categoryLabel, images };
 
-    const res = await fetch("/api/projects", {
-      method: "POST",
+    const url    = editingId ? `/api/projects/${editingId}` : "/api/projects";
+    const method = editingId ? "PUT" : "POST";
+
+    const res = await fetch(url, {
+      method,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...data, categoryLabel, images }),
+      body: JSON.stringify(payload),
     });
     if (!res.ok) {
       const err = await res.json();
-      throw new Error(err.error || "Erro a criar projeto");
+      throw new Error(err.error || "Erro a guardar projeto");
     }
     await reload();
+    setEditingId(null);
     return true;
   };
 
   return (
     <div className="bg-white min-h-screen pt-32 pb-24">
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between gap-4">
           <Link href="/mab-guest-admin" className="text-brand-copper text-[10px] tracking-[0.2em] uppercase font-semibold hover:underline">
             ← Voltar ao admin
@@ -85,8 +117,19 @@ export default function AdminProjetos() {
 
         <div className="grid lg:grid-cols-2 gap-12">
           <section>
-            <h2 className="text-xl font-light text-brand-dark mb-6">Adicionar novo projeto</h2>
-            <AdminForm fields={fields} onSubmit={handleSubmit} submitLabel="Adicionar projeto" />
+            <h2 className="text-xl font-light text-brand-dark mb-6">
+              {editing ? `Editar: ${editing.title}` : "Adicionar novo projeto"}
+            </h2>
+            <AdminForm
+              key={editingId ?? "new"}
+              fields={fields}
+              initial={initial}
+              initialImages={editing?.images}
+              isEditing={!!editing}
+              onSubmit={handleSubmit}
+              onCancel={cancelEdit}
+              submitLabel={editing ? "Guardar alterações" : "Adicionar projeto"}
+            />
           </section>
 
           <section>
@@ -97,9 +140,16 @@ export default function AdminProjetos() {
               <p className="text-brand-grey/50 text-sm">A carregar...</p>
             ) : (
               <AdminList
-                items={items.map((p) => ({ id: p.id, title: p.title, subtitle: `${p.categoryLabel} · ${p.location || "—"}`, images: p.images }))}
+                items={items.map((p) => ({
+                  id: p.id,
+                  title: p.title,
+                  subtitle: `${p.categoryLabel} · ${p.location || "—"}`,
+                  images: p.images,
+                }))}
                 apiPath="/api/projects"
+                editingId={editingId}
                 onChange={reload}
+                onEdit={startEdit}
               />
             )}
           </section>
