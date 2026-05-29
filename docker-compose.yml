@@ -7,23 +7,23 @@ services:
     container_name: mab-website
     restart: unless-stopped
 
+    # Só expor a 127.0.0.1 (não público) — Cloudflare Tunnel chega pela rede interna
     ports:
-      - "3000:3000"
+      - "127.0.0.1:3000:3000"
 
     environment:
-      # Sessão admin — DEFINIR EM .env (não comitar!)
       ADMIN_USERNAME:    ${ADMIN_USERNAME:-admin}
       ADMIN_PASSWORD:    ${ADMIN_PASSWORD:-mab2026}
       ADMIN_SESSION_KEY: ${ADMIN_SESSION_KEY:-CHANGE-ME-IN-PRODUCTION}
-
       NODE_ENV: production
 
     volumes:
-      # Persistência dos JSON (propriedades + projetos)
       - ./data:/app/data
-
-      # Persistência das imagens carregadas pelo admin
       - ./public/uploads:/app/public/uploads
+
+    networks:
+      - default        # rede própria deste compose
+      - cloudflared    # rede partilhada com o cloudflared
 
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/"]
@@ -31,3 +31,9 @@ services:
       timeout: 5s
       retries: 3
       start_period: 20s
+
+networks:
+  cloudflared:
+    external: true       # rede criada por outro compose (do cloudflared)
+    # Se o nome não for "cloudflared", muda na linha de baixo:
+    # name: NOME_REAL_DA_REDE
