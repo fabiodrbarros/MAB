@@ -2,18 +2,21 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import BlueprintBackground from "@/components/ui/BlueprintBackground";
 
-const options = [
-  { id: "vender",    label: "Quero vender" },
-  { id: "comprar",   label: "Quero comprar" },
-  { id: "terreno",   label: "Tenho um terreno" },
-  { id: "avaliar",   label: "Quero avaliar possibilidades" },
-  { id: "outro",     label: "Outro" },
-];
-
 export default function PropertyForm() {
+  const t  = useTranslations("realestate.form");
+  const tC = useTranslations("common");
   const [selected, setSelected] = useState<string | null>(null);
+
+  const options = [
+    { id: "sell",     label: t("options.sell") },
+    { id: "buy",      label: t("options.buy") },
+    { id: "land",     label: t("options.land") },
+    { id: "evaluate", label: t("options.evaluate") },
+    { id: "other",    label: t("options.other") },
+  ];
 
   return (
     <section className="relative py-24 lg:py-36 bg-brand-dark overflow-hidden">
@@ -21,25 +24,23 @@ export default function PropertyForm() {
 
       <div className="relative z-10 max-w-[1440px] mx-auto px-6 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          {/* Header — estilo unificado */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 0.7 }}
           >
             <div className="flex items-center gap-4 mb-6">
               <div className="h-px w-10 bg-brand-copper" />
               <p className="text-brand-copper text-[10px] tracking-[0.4em] uppercase font-semibold">
-                Tenho uma propriedade
+                {t("eyebrow")}
               </p>
             </div>
             <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-white leading-[1.05] tracking-tight">
-              Qual é a sua<br />situação?
+              {t("titleLine1")}<br />{t("titleLine2")}
             </h2>
           </motion.div>
 
-          {/* Opções + CTA */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -64,9 +65,7 @@ export default function PropertyForm() {
                 <span className="text-sm tracking-wide font-medium">{opt.label}</span>
                 <span className={`text-lg transition-transform duration-300 ${
                   selected === opt.id ? "text-brand-copper rotate-45" : "text-white/25"
-                }`}>
-                  +
-                </span>
+                }`}>+</span>
               </motion.button>
             ))}
 
@@ -75,7 +74,7 @@ export default function PropertyForm() {
               whileHover={{ x: 4 }}
               className="mt-4 inline-flex items-center gap-3 px-8 py-4 bg-brand-copper text-white text-[11px] tracking-[0.2em] uppercase font-semibold hover:bg-brand-copper2 transition-colors duration-300 self-start"
             >
-              Fale connosco <span>→</span>
+              {tC("talkToUs")} <span>→</span>
             </motion.a>
           </motion.div>
         </div>

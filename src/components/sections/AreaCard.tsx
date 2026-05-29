@@ -2,6 +2,7 @@
 
 import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 interface AreaCardProps {
   number: string;
@@ -20,6 +21,7 @@ export default function AreaCard({
   slug,
   index = 0,
 }: AreaCardProps) {
+  const tC = useTranslations("common");
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -76,7 +78,7 @@ export default function AreaCard({
 
             {/* CTA */}
             <div className="flex items-center gap-3 text-brand-copper text-[11px] tracking-[0.2em] uppercase font-semibold group-hover:gap-5 transition-all duration-300">
-              <span>Explorar</span>
+              <span>{tC("explore")}</span>
               <span>→</span>
             </div>
           </div>

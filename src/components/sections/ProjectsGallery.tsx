@@ -4,18 +4,22 @@ import { useState, useRef, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
 import type { Project } from "@/lib/storage";
 
-const categories = [
-  { id: "all",           label: "Todos" },
-  { id: "construcao",    label: "Construção" },
-  { id: "terraplanagem", label: "Terraplanagem" },
-  { id: "muros",         label: "Muros" },
-  { id: "moradias",      label: "Moradias" },
-] as const;
-
 export default function ProjectsGallery() {
+  const t  = useTranslations("projects");
+  const tC = useTranslations("common");
+
+  const categories = [
+    { id: "all",           label: t("filters.all") },
+    { id: "construcao",    label: t("filters.construction") },
+    { id: "terraplanagem", label: t("filters.earthworks") },
+    { id: "muros",         label: t("filters.walls") },
+    { id: "moradias",      label: t("filters.houses") },
+  ] as const;
+
   const [activeFilter, setActiveFilter] = useState("all");
   const [items, setItems]               = useState<Project[]>([]);
   const [loading, setLoading]           = useState(true);
@@ -74,14 +78,14 @@ export default function ProjectsGallery() {
           <div className="flex items-center gap-3">
             <p className="text-brand-grey/50 text-[10px] tracking-[0.25em] uppercase font-semibold mr-2 hidden sm:block">
               {filtered.length.toString().padStart(2, "0")}{" "}
-              {filtered.length === 1 ? "projeto" : "projetos"}
+              {filtered.length === 1 ? t("project") : t("projects")}
             </p>
-            <button type="button" onClick={() => scrollBy("left")} aria-label="Anterior" className="w-10 h-10 border border-brand-light hover:border-brand-copper hover:text-brand-copper text-brand-grey transition-colors flex items-center justify-center">
+            <button type="button" onClick={() => scrollBy("left")} aria-label={tC("previous")} className="w-10 h-10 border border-brand-light hover:border-brand-copper hover:text-brand-copper text-brand-grey transition-colors flex items-center justify-center">
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                 <path d="M9 2 L4 7 L9 12" stroke="currentColor" strokeWidth="1.5" />
               </svg>
             </button>
-            <button type="button" onClick={() => scrollBy("right")} aria-label="Seguinte" className="w-10 h-10 border border-brand-light hover:border-brand-copper hover:text-brand-copper text-brand-grey transition-colors flex items-center justify-center">
+            <button type="button" onClick={() => scrollBy("right")} aria-label={tC("next")} className="w-10 h-10 border border-brand-light hover:border-brand-copper hover:text-brand-copper text-brand-grey transition-colors flex items-center justify-center">
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                 <path d="M5 2 L10 7 L5 12" stroke="currentColor" strokeWidth="1.5" />
               </svg>
@@ -98,10 +102,10 @@ export default function ProjectsGallery() {
           className="property-carousel flex gap-6 overflow-x-auto snap-x snap-mandatory pb-6 scroll-smooth"
         >
           {loading ? (
-            <div className="w-full py-16 text-center text-brand-grey/50 text-sm">A carregar projetos...</div>
+            <div className="w-full py-16 text-center text-brand-grey/50 text-sm">{tC("loading")}</div>
           ) : filtered.length === 0 ? (
             <div className="w-full py-16 text-center text-brand-grey/50 text-sm">
-              Sem projetos nesta categoria de momento.
+              {t("noResults")}
             </div>
           ) : (
             filtered.map((project, i) => (
@@ -146,7 +150,7 @@ export default function ProjectsGallery() {
                       {project.shortDescription}
                     </p>
                     <div className="flex items-center gap-2 text-brand-copper text-[10px] tracking-[0.2em] uppercase group-hover:gap-4 transition-all duration-300 font-semibold">
-                      <span>Ver detalhe</span>
+                      <span>{tC("viewDetail")}</span>
                       <span>→</span>
                     </div>
 

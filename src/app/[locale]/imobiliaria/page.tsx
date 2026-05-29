@@ -1,21 +1,19 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import PageHero from "@/components/sections/PageHero";
 import PropertyGrid from "@/components/sections/PropertyGrid";
 import PropertyForm from "@/components/sections/PropertyForm";
 
-export const metadata: Metadata = {
-  title: "Imobiliária",
-  description:
-    "Compra, venda e valorização de propriedades, terrenos e oportunidades imobiliárias no Alto Minho.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("nav");
+  return { title: t("realestate") };
+}
 
-export default function ImobiliariaPage() {
+export default async function ImobiliariaPage() {
+  const t = await getTranslations("realestate");
   return (
     <div className="bg-white">
-      <PageHero
-        label="03 — Imobiliária"
-        title="Propriedades com potencial. Terrenos com futuro."
-      />
+      <PageHero label={t("label")} title={t("title")} />
       <PropertyGrid />
       <PropertyForm />
     </div>

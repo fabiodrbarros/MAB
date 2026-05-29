@@ -2,16 +2,19 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
 
-const layers = [
-  { label: "Construção",  color: "#E05A12" },  // laranja
-  { label: "Engenharia",  color: "#1a1a1a" },  // preto
-  { label: "Imobiliária", color: "#E05A12" },  // laranja
-];
-
 export default function HomeHero() {
+  const t  = useTranslations("home");
+  const tC = useTranslations("common");
+
+  const layers = [
+    { label: t("layers.construction"), color: "#E05A12" },
+    { label: t("layers.engineering"),  color: "#1a1a1a" },
+    { label: t("layers.realestate"),   color: "#E05A12" },
+  ];
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -69,7 +72,7 @@ export default function HomeHero() {
             >
               <div className="h-px w-10 bg-brand-copper" />
               <p className="text-brand-copper text-[10px] tracking-[0.4em] uppercase font-semibold">
-                Território em Valor
+                {t("eyebrow")}
               </p>
             </motion.div>
 
@@ -80,9 +83,9 @@ export default function HomeHero() {
                 transition={{ duration: 0.9, delay: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light text-brand-dark leading-[1.02] tracking-tight"
               >
-                Transformamos<br />
-                <span className="text-brand-copper font-normal">território</span><br />
-                em valor.
+                {t("titlePart1")}<br />
+                <span className="text-brand-copper font-normal">{t("titlePart2")}</span><br />
+                {t("titlePart3")}
               </motion.h1>
             </div>
 
@@ -96,13 +99,13 @@ export default function HomeHero() {
                 href="#areas"
                 className="inline-flex items-center gap-3 px-8 py-4 bg-brand-copper text-white text-[11px] tracking-[0.2em] uppercase font-semibold hover:bg-brand-copper2 transition-colors duration-300 shadow-sm hover:shadow-md"
               >
-                Explorar áreas <span>→</span>
+                {tC("exploreAreas")} <span>→</span>
               </Link>
               <Link
                 href="/contacto"
                 className="inline-flex items-center gap-3 px-8 py-4 border border-brand-dark text-brand-dark text-[11px] tracking-[0.2em] uppercase font-semibold hover:bg-brand-dark hover:text-white transition-all duration-300"
               >
-                Falar sobre um projeto
+                {tC("talkAboutProject")}
               </Link>
             </motion.div>
 
@@ -183,7 +186,7 @@ export default function HomeHero() {
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           className="w-px h-12 bg-gradient-to-b from-brand-copper to-transparent"
         />
-        <p className="text-brand-copper/60 text-[9px] tracking-[0.3em] uppercase font-semibold">Scroll</p>
+        <p className="text-brand-copper/60 text-[9px] tracking-[0.3em] uppercase font-semibold">{tC("scroll")}</p>
       </motion.div>
     </section>
   );

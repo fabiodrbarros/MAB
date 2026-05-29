@@ -1,8 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 export default function ProcessHero() {
+  const t = useTranslations("process");
   return (
     <section className="relative min-h-screen h-screen flex flex-col justify-center overflow-hidden bg-white pt-20">
       {/* Grelha técnica clara */}
@@ -61,7 +63,7 @@ export default function ProcessHero() {
         >
           <div className="h-px w-10 bg-brand-copper" />
           <p className="text-brand-copper text-[10px] tracking-[0.4em] uppercase font-semibold">
-            Território em Valor
+            {t("eyebrow")}
           </p>
         </motion.div>
 
@@ -71,7 +73,7 @@ export default function ProcessHero() {
           transition={{ duration: 0.9, delay: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-brand-dark leading-[1.05] tracking-tight mb-6"
         >
-          Do solo<br />ao valor.
+          {t("titleLine1")}<br />{t("titleLine2")}
         </motion.h1>
 
         <motion.p
@@ -80,8 +82,7 @@ export default function ProcessHero() {
           transition={{ duration: 0.7, delay: 0.65 }}
           className="text-brand-grey/80 text-base md:text-lg max-w-xl leading-relaxed"
         >
-          Uma leitura visual do caminho que transforma terreno, decisão técnica,
-          construção e propriedade num ciclo completo de valor.
+          {t("subtitle")}
         </motion.p>
 
         <motion.div
@@ -90,7 +91,7 @@ export default function ProcessHero() {
           transition={{ delay: 1.2 }}
           className="flex flex-col items-start gap-1 mt-16"
         >
-          <p className="text-brand-grey/40 text-[10px] tracking-[0.3em] uppercase font-semibold">Scroll para descobrir</p>
+          <p className="text-brand-grey/40 text-[10px] tracking-[0.3em] uppercase font-semibold">{t("scrollHint")}</p>
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}

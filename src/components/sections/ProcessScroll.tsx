@@ -2,10 +2,17 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { processSteps } from "@/data/processSteps";
+import { useTranslations } from "next-intl";
 import BlueprintBackground from "@/components/ui/BlueprintBackground";
 
-function PhaseBlock({ step, index }: { step: typeof processSteps[number]; index: number }) {
+type Step = {
+  id: string;
+  number: string;
+  key: string;
+};
+
+function PhaseBlock({ step, index, allKeys }: { step: Step; index: number; allKeys: string[] }) {
+  const t = useTranslations("process");
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -65,7 +72,7 @@ function PhaseBlock({ step, index }: { step: typeof processSteps[number]; index:
             >
               <div className="h-px w-10 bg-brand-copper" />
               <p className="text-brand-copper text-[10px] tracking-[0.4em] uppercase font-semibold">
-                {step.number} — {step.subtitle}
+                {step.number} — {t(`steps.${step.key}.subtitle`)}
               </p>
             </motion.div>
 
@@ -77,7 +84,7 @@ function PhaseBlock({ step, index }: { step: typeof processSteps[number]; index:
                 isDark ? "text-white" : "text-brand-dark"
               }`}
             >
-              {step.title}
+              {t(`steps.${step.key}.title`)}
             </motion.h2>
 
             <motion.p
@@ -88,7 +95,7 @@ function PhaseBlock({ step, index }: { step: typeof processSteps[number]; index:
                 isDark ? "text-brand-light/60" : "text-brand-grey/80"
               }`}
             >
-              {step.description}
+              {t(`steps.${step.key}.description`)}
             </motion.p>
           </div>
 
@@ -117,19 +124,19 @@ function PhaseBlock({ step, index }: { step: typeof processSteps[number]; index:
               </span>
               <div className="h-px w-6 bg-brand-copper/40" />
               <p className="text-brand-copper text-[10px] tracking-[0.3em] uppercase font-semibold">
-                Detalhe técnico
+                {t("technicalDetail")}
               </p>
             </div>
 
             <p className={`text-sm leading-relaxed ${
               isDark ? "text-white/70" : "text-brand-grey/80"
             }`}>
-              {step.detail}
+              {t(`steps.${step.key}.detail`)}
             </p>
 
             {/* Progress bar */}
             <div className="mt-10 flex gap-1.5">
-              {processSteps.map((_, i) => (
+              {allKeys.map((_, i) => (
                 <div
                   key={i}
                   className={`h-[3px] flex-1 transition-colors duration-300 ${
@@ -141,7 +148,7 @@ function PhaseBlock({ step, index }: { step: typeof processSteps[number]; index:
             <p className={`text-[9px] tracking-widest mt-2 font-semibold ${
               isDark ? "text-white/30" : "text-brand-grey/50"
             }`}>
-              FASE {step.number} DE {String(processSteps.length).padStart(2, "0")}
+              {t("phase").toUpperCase()} {step.number} {t("of").toUpperCase()} {String(allKeys.length).padStart(2, "0")}
             </p>
           </motion.div>
         </div>
@@ -150,6 +157,15 @@ function PhaseBlock({ step, index }: { step: typeof processSteps[number]; index:
   );
 }
 
+const steps: Step[] = [
+  { id: "01", number: "01", key: "terreno" },
+  { id: "02", number: "02", key: "leituraTecnica" },
+  { id: "03", number: "03", key: "preparacao" },
+  { id: "04", number: "04", key: "construcao" },
+  { id: "05", number: "05", key: "propriedade" },
+  { id: "06", number: "06", key: "mercado" },
+];
+
 export default function ProcessScroll() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -157,20 +173,19 @@ export default function ProcessScroll() {
     offset: ["start start", "end end"],
   });
 
-  // Linha de progresso vertical fixa
   const lineScaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const allKeys = steps.map((s) => s.key);
 
   return (
     <section ref={containerRef} className="relative">
-      {/* Linha de progresso fixa à esquerda */}
       <div className="fixed left-3 lg:left-6 top-0 bottom-0 w-[1px] bg-brand-grey/15 pointer-events-none z-20 hidden lg:block" />
       <motion.div
         className="fixed left-3 lg:left-6 top-0 w-[1px] bg-brand-copper pointer-events-none z-20 hidden lg:block origin-top"
         style={{ scaleY: lineScaleY, height: "100vh" }}
       />
 
-      {processSteps.map((step, i) => (
-        <PhaseBlock key={step.id} step={step} index={i} />
+      {steps.map((step, i) => (
+        <PhaseBlock key={step.id} step={step} index={i} allKeys={allKeys} />
       ))}
     </section>
   );

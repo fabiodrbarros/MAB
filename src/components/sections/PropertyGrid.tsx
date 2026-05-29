@@ -4,18 +4,22 @@ import { useState, useRef, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
 import type { Property } from "@/lib/storage";
 
-const filters = [
-  { id: "all",                label: "Todos" },
-  { id: "Terreno",            label: "Terrenos" },
-  { id: "Moradia",            label: "Moradias" },
-  { id: "Em Desenvolvimento", label: "Em desenvolvimento" },
-  { id: "Oportunidade",       label: "Oportunidades" },
-] as const;
-
 export default function PropertyGrid() {
+  const t  = useTranslations("realestate");
+  const tC = useTranslations("common");
+
+  const filters = [
+    { id: "all",                label: t("filters.all") },
+    { id: "Terreno",            label: t("filters.land") },
+    { id: "Moradia",            label: t("filters.house") },
+    { id: "Em Desenvolvimento", label: t("filters.development") },
+    { id: "Oportunidade",       label: t("filters.opportunity") },
+  ] as const;
+
   const [active, setActive]       = useState<string>("all");
   const [items, setItems]         = useState<Property[]>([]);
   const [loading, setLoading]     = useState(true);
@@ -73,12 +77,12 @@ export default function PropertyGrid() {
           <div className="flex items-center gap-3">
             <p className="text-brand-grey/50 text-[10px] tracking-[0.25em] uppercase font-semibold mr-2 hidden sm:block">
               {filtered.length.toString().padStart(2, "0")}{" "}
-              {filtered.length === 1 ? "propriedade" : "propriedades"}
+              {filtered.length === 1 ? t("property") : t("properties")}
             </p>
             <button
               type="button"
               onClick={() => scrollBy("left")}
-              aria-label="Anterior"
+              aria-label={tC("previous")}
               className="w-10 h-10 border border-brand-light hover:border-brand-copper hover:text-brand-copper text-brand-grey transition-colors flex items-center justify-center"
             >
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -88,7 +92,7 @@ export default function PropertyGrid() {
             <button
               type="button"
               onClick={() => scrollBy("right")}
-              aria-label="Seguinte"
+              aria-label={tC("next")}
               className="w-10 h-10 border border-brand-light hover:border-brand-copper hover:text-brand-copper text-brand-grey transition-colors flex items-center justify-center"
             >
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -108,10 +112,10 @@ export default function PropertyGrid() {
           className="property-carousel flex gap-6 overflow-x-auto snap-x snap-mandatory pb-6 scroll-smooth"
         >
           {loading ? (
-            <div className="w-full py-16 text-center text-brand-grey/50 text-sm">A carregar propriedades...</div>
+            <div className="w-full py-16 text-center text-brand-grey/50 text-sm">{tC("loading")}</div>
           ) : filtered.length === 0 ? (
             <div className="w-full py-16 text-center text-brand-grey/50 text-sm">
-              Sem propriedades nesta categoria de momento.
+              {t("noResults")}
             </div>
           ) : (
             filtered.map((prop, i) => (
@@ -160,7 +164,7 @@ export default function PropertyGrid() {
                         {prop.status}
                       </span>
                       <span className="text-brand-copper text-[10px] tracking-[0.2em] uppercase font-semibold group-hover:underline">
-                        Ver detalhe →
+                        {tC("viewDetail")} →
                       </span>
                     </div>
 
