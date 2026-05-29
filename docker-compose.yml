@@ -7,9 +7,10 @@ services:
     container_name: mab-website
     restart: unless-stopped
 
-    # Só expor a 127.0.0.1 (não público) — Cloudflare Tunnel chega pela rede interna
-    ports:
-      - "127.0.0.1:3000:3000"
+    # Sem mapeamento público de portas — Cloudflare Tunnel acede via rede 'web'
+    # Se quiseres testar localmente na VPS, descomenta:
+    # ports:
+    #   - "127.0.0.1:3000:3000"
 
     environment:
       ADMIN_USERNAME:    ${ADMIN_USERNAME:-admin}
@@ -22,18 +23,17 @@ services:
       - ./public/uploads:/app/public/uploads
 
     networks:
-      - default        # rede própria deste compose
-      - cloudflared    # rede partilhada com o cloudflared
+      - default       # rede deste compose
+      - web           # rede partilhada com cloudflared + outros apps
 
     healthcheck:
-      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/"]
+      # Usar 127.0.0.1 explícito (evita resolver para ::1 em IPv6)
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://127.0.0.1:3000/"]
       interval: 30s
       timeout: 5s
       retries: 3
-      start_period: 20s
+      start_period: 30s
 
 networks:
-  cloudflared:
-    external: true       # rede criada por outro compose (do cloudflared)
-    # Se o nome não for "cloudflared", muda na linha de baixo:
-    # name: NOME_REAL_DA_REDE
+  web:
+    external: true       # rede já existente (criada pelo nginx-proxy-manager ou cloudflared)
